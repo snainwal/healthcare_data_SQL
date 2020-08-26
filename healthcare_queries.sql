@@ -70,10 +70,6 @@ List patients seen by Dr. Julia Hibbert showing the patient's name, number of ti
 Tables needed: patients, providers, encounters.
 Your result set should have two rows.
 */
-
-
-
-
 SELECT x.patient_nm, x.numb_seen as num_seen, x.last_visit, DATEDIFF(DAY, x.last_visit, GETDATE()) AS days_since_last_visit ,
 DENSE_RANK () OVER (PARTITION BY x.patient_nm ORDER BY x.last_visit DESC) AS rnk
 FROM (
@@ -85,9 +81,6 @@ JOIN providers pr
 ON e.provider_id = pr.provider_id
 WHERE pr.provider_nm ='Julia Hibbert'
 GROUP BY p.patient_nm,e.start_dts) x 
-
-
-
 
 
 /*
